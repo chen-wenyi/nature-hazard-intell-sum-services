@@ -7,6 +7,11 @@ A near real-time natural hazard intelligence platform that:
 - Regenerates AI summaries when source data changes
 - Pushes update events to the UI through `Ably` pub/sub
 
+## Core Value
+- Converts complex technical data into decision-ready intelligence
+- Improves speed and clarity of emergency response planning
+- Enables proactive risk management through timely AI-driven insights
+
 ## Architecture
 
 The project has 3 main applications plus `MongoDB`:
@@ -23,6 +28,10 @@ Main flow:
 3. If new content is detected, main-services stores it and regenerates summaries with OpenAI model gpt-5-mini.
 4. main-services publishes update events through Ably.
 5. ui subscribes to the Ably channel and refreshes the screen state.
+
+
+<img width="2552" height="1590" alt="image" src="https://github.com/user-attachments/assets/0b35d8b7-b296-49e6-9d03-b13e42be5cf1" />
+
 
 ## Project Structure
 
@@ -125,3 +134,28 @@ docker compose down
 - main-services schedules recurring updates for severe weather outlook, thunderstorm outlook, and issued warnings and watches.
 - AI summaries are regenerated only when newly scraped data differs from latest stored records.
 - Ably is used as pub/sub transport between backend and frontend for status and update events.
+
+# Screenshots
+
+## Natural Hazard Intelligence Dashboard
+<img width="1909" height="923" alt="image" src="https://github.com/user-attachments/assets/5d5c01a8-c0d1-446b-b629-3c56bfb63f65" />
+
+## Data Collection & Visualisation
+<img width="1109" height="613" alt="image" src="https://github.com/user-attachments/assets/7236fd46-24dd-4fca-94bd-8948924891ae" />
+
+## Issued Alterts Timeline feature
+<img width="1288" height="1526" alt="image" src="https://github.com/user-attachments/assets/0d6f6fc5-11ac-483b-867e-9d0701c7f8c5" />
+
+## Issued Alerts Status feature
+<img width="1964" height="1394" alt="image" src="https://github.com/user-attachments/assets/b6008e48-3ca1-4c6e-af93-839c4ad1a37c" />
+
+## Outlooks revision comparison feature
+<img width="1278" height="541" alt="image" src="https://github.com/user-attachments/assets/b7895fd3-cd36-4122-ab44-e52806292fb8" />
+
+## AI Generated content validation
+<img width="3324" height="924" alt="image" src="https://github.com/user-attachments/assets/c14c1ac7-6dff-4d01-9f4e-604670efe9c9" />
+
+
+
+
+
