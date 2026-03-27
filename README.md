@@ -3,16 +3,16 @@
 A near real-time natural hazard intelligence platform that:
 
 - Scrapes latest hazard content from MetService
-- Stores outlooks and alerts in MongoDB
+- Stores outlooks and alerts in `MongoDB`
 - Regenerates AI summaries when source data changes
-- Pushes update events to the UI through Ably pub/sub
+- Pushes update events to the UI through `Ably` pub/sub
 
 ## Architecture
 
-The project has 3 main applications plus MongoDB:
+The project has 3 main applications plus `MongoDB`:
 
 - main-services: backend orchestration and scheduled jobs
-- scrape-services: web scraping service for MetService pages
+- scrape-services: web scraping service for _MetService_ pages
 - ui: frontend presentation layer
 - mongodb: persistent storage
 
