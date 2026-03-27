@@ -1,0 +1,22 @@
+{
+  "name": "natural-hazard-intelligence-services",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "local:build": "docker build -t nhis-services:latest .",
+    "local:run": "docker run -p 4000:4000 nhis-services:latest",
+    "publish": "docker build --platform=linux/amd64 -t ghcr.io/chen-wenyi/nhis-services:latest . && docker push ghcr.io/chen-wenyi/nhis-services:latest"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.9",
+    "hono": "^4.11.4",
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  }
+}

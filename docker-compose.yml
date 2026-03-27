@@ -1,0 +1,29 @@
+services:
+  app:
+    container_name: nature-hazard-intell-sum-services
+    build:
+      context: ./main-services
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
+    networks:
+      - nhis-network
+  scrape:
+    container_name: scrape-services
+    build:
+      context: ./scrape-services
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
+    networks:
+      - nhis-network
+
+networks:
+  nhis-network:
+    driver: bridge
