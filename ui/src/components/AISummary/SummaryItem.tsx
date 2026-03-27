@@ -150,7 +150,11 @@ export function SummaryItem({
                   ))}
               </ul>
             </div>
-            <Accordion type="single" collapsible>
+            <Accordion
+              type="single"
+              collapsible
+              defaultValue="Low_Confidence_Severe_Weather_Outlook"
+            >
               <AccordionItem value="Low_Confidence_Severe_Weather_Outlook">
                 <AccordionTrigger>
                   <span className="underline cursor-pointer text-xs text-gray-400">
