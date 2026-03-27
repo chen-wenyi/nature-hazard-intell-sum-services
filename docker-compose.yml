@@ -1,25 +1,61 @@
 services:
-  app:
-    container_name: nature-hazard-intell-sum-services
+  main_services:
+    container_name: nhis-main-services
     build:
       context: ./main-services
       dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: ./main-services/src
     ports:
       - '3000:3000'
-    environment:
-      NODE_ENV: production
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - nhis-network
-  scrape:
-    container_name: scrape-services
+  scrape_services:
+    container_name: nhis-scrape-services
     build:
       context: ./scrape-services
       dockerfile: Dockerfile
     ports:
       - '4000:4000'
+    restart: unless-stopped
+    networks:
+      - nhis-network
+  ui:
+    container_name: nhis-ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    depends_on:
+      - main_services
+      - scrape_services
+      - mongodb
+    ports:
+      - '3001:3001'
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - nhis-network
+  mongodb:
+    image: mongo:latest
+    container_name: nhis-mongodb
+    command:
+      - --quiet
+      - --logpath
+      - /data/db/mongod.log
+      - --logappend
+    ports:
+      - '27017:27017'
     environment:
-      NODE_ENV: production
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
     restart: unless-stopped
     networks:
       - nhis-network
@@ -27,3 +63,6 @@ services:
 networks:
   nhis-network:
     driver: bridge
+
+volumes:
+  mongodb_data:

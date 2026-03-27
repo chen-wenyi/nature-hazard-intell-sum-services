@@ -1,0 +1,62 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle,
+.hexagon,
+.triangle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.imageWrapper {
+  z-index: 1;
+  position: relative;
+}
+
+.imageWrapperCircle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 20%;
+  left: 1%;
+}
+
+.imageWrapperHexagon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 17%;
+}
+
+.imageWrapperTriangle {
+  position: relative;
+  width: 85%;
+  height: 85%;
+  top: 29%;
+  left: 1%;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.yellow {
+  color: #ffeb18;
+}
+
+.orange {
+  color: #ff8918;
+}
+
+.red {
+  color: #dc2626;
+}

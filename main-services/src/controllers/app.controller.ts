@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { AiGenerateService } from 'src/services/ai-generate/ai-generate.service';
 import { AppService } from 'src/services/app.service';
 import { ScrapeService } from 'src/services/scrape/scrape.service';
 
@@ -7,6 +8,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly scrapeService: ScrapeService,
+    private readonly aiGenerateService: AiGenerateService,
   ) {}
 
   @Get()
@@ -14,15 +16,42 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('severe-weather')
-  async getSevereWeatherOutlook() {
-    const response = await this.scrapeService.getSevereWeatherOutlook();
-    return response.json();
+  @Get('update-severe-weather')
+  async updateSevereWeatherOutlook() {
+    await this.scrapeService.updateSevereWeatherOutlook();
+    return { ok: true };
   }
 
-  @Get('thunderstorm')
-  async getThunderstormOutlook() {
-    const response = await this.scrapeService.getThunderstormOutlook();
-    return response.json();
+  @Get('update-thunderstorm')
+  async updateThunderstormOutlook() {
+    await this.scrapeService.updateThunderstormOutlook();
+    return { ok: true };
+  }
+
+  @Get('update-issued-alerts')
+  async updateIssuedAlerts() {
+    await this.scrapeService.updateIssuedAlerts();
+    return { ok: true };
+  }
+  @Get('regen-ai-severe-weather-summary')
+  async regenerateSevereWeatherSummary(
+    @Query('reason') reason: string,
+    @Query('outlookRefId') outlookRefId: string,
+  ) {
+    await this.aiGenerateService.generateSevereWeatherOutlookSummary(
+      outlookRefId,
+      reason,
+    );
+  }
+
+  @Get('regen-ai-thunderstorm-summary')
+  async regenerateThunderstormSummary(
+    @Query('reason') reason: string,
+    @Query('outlookRefId') outlookRefId: string,
+  ) {
+    await this.aiGenerateService.generateThunderstormOutlookSummary(
+      outlookRefId,
+      reason,
+    );
   }
 }
