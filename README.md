@@ -7,6 +7,8 @@ A near real-time natural hazard intelligence platform that:
 - Regenerates AI summaries when source data changes
 - Pushes update events to the UI through `Ably` pub/sub
 
+## Demo
+[Demo](https://drive.google.com/file/d/10jYOKI_7c5phWDC1SoBJhGe9gbuqb1nM/view?usp=drive_link)
 ## Core Value
 - Converts complex technical data into decision-ready intelligence
 - Improves speed and clarity of emergency response planning
